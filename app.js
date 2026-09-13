@@ -16,34 +16,42 @@ const people = [
 
 let selectedPerson = null;
 const screens = [...document.querySelectorAll('.screen')];
-const navSearch = document.getElementById('nav-search');
-const navAbout = document.getElementById('nav-about');
 const homeSearch = document.getElementById('home-search');
+const homeSearchBtn = document.getElementById('home-search-btn');
 const resultsSearch = document.getElementById('results-search');
 const resultsList = document.getElementById('results-list');
 const resultsCount = document.getElementById('results-count');
 const clearSearch = document.getElementById('clear-search');
 
-function normalize(text='') {
+function normalize(text = '') {
   return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
 }
 
 function showScreen(id) {
-  screens.forEach(s => s.classList.toggle('active', s.id === id));
-  navSearch.classList.toggle('active', id !== 'screen-about');
-  navAbout.classList.toggle('active', id === 'screen-about');
-  window.scrollTo(0,0);
+  screens.forEach(screen => screen.classList.toggle('active', screen.id === id));
+  const current = document.getElementById(id);
+  if (current) current.scrollTop = 0;
+}
+
+function goHome() {
+  selectedPerson = null;
+  homeSearch.value = '';
+  resultsSearch.value = '';
+  showScreen('screen-home');
 }
 
 function search(query) {
   const q = normalize(query);
-  if (!q) return people.slice().sort((a,b)=>a.name.localeCompare(b.name,'pt-BR'));
-  return people.filter(p => normalize(p.name).includes(q)).sort((a,b)=>a.name.localeCompare(b.name,'pt-BR'));
+  if (!q) return people.slice().sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
+  return people
+    .filter(person => normalize(person.name).includes(q))
+    .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
 }
 
 function renderResults(query) {
   const matches = search(query);
   resultsList.innerHTML = '';
+
   if (!matches.length) {
     const empty = document.createElement('div');
     empty.className = 'empty-state';
@@ -51,22 +59,22 @@ function renderResults(query) {
     resultsList.appendChild(empty);
   } else {
     matches.forEach(person => {
-      const btn = document.createElement('button');
-      btn.className = 'result-row';
-      btn.innerHTML = `<span>${person.name}</span><span class="chev">›</span>`;
-      btn.addEventListener('click', () => openTest(person));
-      resultsList.appendChild(btn);
+      const button = document.createElement('button');
+      button.className = 'result-row';
+      button.innerHTML = `<span>${person.name}</span><span class="chev">›</span>`;
+      button.addEventListener('click', () => openTest(person));
+      resultsList.appendChild(button);
     });
   }
+
   resultsCount.textContent = `${matches.length} ${matches.length === 1 ? 'RESULTADO' : 'RESULTADOS'}`;
 }
 
 function openResults(query) {
-  homeSearch.blur();
-  resultsSearch.value = query;
-  renderResults(query);
+  const cleanQuery = query.trim();
+  resultsSearch.value = cleanQuery;
+  renderResults(cleanQuery);
   showScreen('screen-results');
-  setTimeout(() => resultsSearch.focus(), 180);
 }
 
 function openTest(person) {
@@ -77,46 +85,39 @@ function openTest(person) {
 
 function revealPower(usePotion = false) {
   if (!selectedPerson) return;
+
   const sourceValue = usePotion ? selectedPerson.potionValue : selectedPerson.value;
   const pct = Math.round(sourceValue * 100);
   document.getElementById('final-name').textContent = selectedPerson.name;
   document.getElementById('result-eyebrow').textContent = usePotion ? 'SEU PODER APÓS A POÇÃO' : 'SEU PODER É ÚNICO';
   document.getElementById('power-value').textContent = `${pct}%`;
+
   const orb = document.getElementById('power-orb');
-  orb.classList.remove('high','mid','low','reveal-pulse');
-  // Acima de 60% = verde; 40% a 60% = laranja; abaixo de 40% = vermelho.
+  orb.classList.remove('high', 'mid', 'low', 'reveal-pulse');
   orb.classList.add(pct > 60 ? 'high' : pct >= 40 ? 'mid' : 'low');
   void orb.offsetWidth;
   orb.classList.add('reveal-pulse');
+
   showScreen('screen-result');
 }
 
-function restart() {
-  selectedPerson = null;
-  homeSearch.value = '';
+homeSearchBtn.addEventListener('click', () => openResults(homeSearch.value));
+homeSearch.addEventListener('keydown', event => {
+  if (event.key === 'Enter') openResults(event.currentTarget.value);
+});
+resultsSearch.addEventListener('input', event => renderResults(event.currentTarget.value));
+clearSearch.addEventListener('click', () => {
   resultsSearch.value = '';
-  showScreen('screen-home');
-  setTimeout(() => homeSearch.focus(), 180);
-}
-
-homeSearch.addEventListener('input', e => {
-  if (e.target.value.trim().length > 0) openResults(e.target.value);
+  renderResults('');
+  resultsSearch.focus();
 });
-homeSearch.addEventListener('keydown', e => {
-  if (e.key === 'Enter') openResults(e.target.value);
-});
-resultsSearch.addEventListener('input', e => renderResults(e.target.value));
-clearSearch.addEventListener('click', () => { resultsSearch.value=''; renderResults(''); resultsSearch.focus(); });
 
-document.querySelectorAll('.back-home').forEach(b => b.addEventListener('click', () => showScreen('screen-home')));
-document.querySelectorAll('.back-results').forEach(b => b.addEventListener('click', () => showScreen('screen-results')));
-document.querySelectorAll('.back-test').forEach(b => b.addEventListener('click', () => showScreen('screen-test')));
+document.querySelectorAll('.go-home').forEach(button => button.addEventListener('click', goHome));
 document.getElementById('power-test-btn').addEventListener('click', () => revealPower(false));
 document.getElementById('potion-test-btn').addEventListener('click', () => revealPower(true));
-document.getElementById('restart-btn').addEventListener('click', restart);
-navSearch.addEventListener('click', () => showScreen('screen-home'));
-navAbout.addEventListener('click', () => showScreen('screen-about'));
+document.getElementById('result-potion-btn').addEventListener('click', () => revealPower(true));
+document.getElementById('restart-btn').addEventListener('click', goHome);
 
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
 }
