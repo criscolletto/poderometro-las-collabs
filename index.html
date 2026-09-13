@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#160b09" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Poderômetro" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Poderômetro Las Collabs</title>
+</head>
+<body>
+  <main id="app" class="app-shell" aria-live="polite">
+    <div class="ambient-stars" aria-hidden="true"></div>
+
+    <section id="screen-home" class="screen active" aria-label="Busca">
+      <div class="portal-frame home-frame">
+        <div class="lc-seal" aria-hidden="true">LC</div>
+        <div class="moon" aria-hidden="true">☾</div>
+        <div class="sparkle s1" aria-hidden="true">✦</div>
+        <div class="sparkle s2" aria-hidden="true">✧</div>
+        <div class="sparkle s3" aria-hidden="true">✦</div>
+
+        <div class="home-content parchment-panel">
+          <div class="ornament">✦</div>
+          <h1>PODERÔMETRO<br><span>LAS COLLABS</span></h1>
+          <div class="ornament small">✦</div>
+          <h2>TESTE DE PODER</h2>
+          <p class="tagline">TODO MUNDO TEM UM PODER.<br>QUAL É O SEU?</p>
+
+          <label class="search-box" for="home-search">
+            <span class="search-icon">⌕</span>
+            <input id="home-search" type="search" inputmode="search" autocomplete="off" placeholder="Buscar nome..." />
+          </label>
+
+          <div class="mystic-scene" aria-hidden="true">
+            <div class="crystal crystal-left"></div>
+            <div class="crystal crystal-mid"></div>
+            <div class="book">MAGIA<br>AMIZADE<br>DIVERSÃO</div>
+            <div class="bottle">Confiança</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-results" class="screen" aria-label="Resultados da busca">
+      <header class="topbar">
+        <button class="icon-btn back-home" aria-label="Voltar">‹</button>
+        <div class="lc-seal mini" aria-hidden="true">LC</div>
+      </header>
+      <div class="parchment-card results-card">
+        <h2>RESULTADOS DA BUSCA</h2>
+        <div class="ornament-line">✦</div>
+        <label class="search-box results-search-box" for="results-search">
+          <span class="search-icon">⌕</span>
+          <input id="results-search" type="search" inputmode="search" autocomplete="off" />
+          <button id="clear-search" class="clear-btn" aria-label="Limpar busca">×</button>
+        </label>
+        <div id="results-list" class="results-list"></div>
+        <p id="results-count" class="results-count"></p>
+      </div>
+    </section>
+
+    <section id="screen-test" class="screen" aria-label="Teste de poder">
+      <header class="topbar">
+        <button class="icon-btn back-results" aria-label="Voltar">‹</button>
+        <div class="lc-seal mini" aria-hidden="true">LC</div>
+      </header>
+      <div class="parchment-card test-card">
+        <p class="eyebrow">PREPARE-SE</p>
+        <h2 id="test-name" class="person-name">Nome</h2>
+        <div class="ornament-line">✦</div>
+        <div class="mystic-door" aria-hidden="true">
+          <div class="door-stars">✦ &nbsp; ✧ &nbsp; ✦<br>✧ &nbsp; ☾ &nbsp; ✧<br>✦ &nbsp; ✧ &nbsp; ✦</div>
+        </div>
+        <p class="test-copy">TODO GRANDE PODER<br>REVELA UM NOVO MUNDO.</p>
+        <button id="power-test-btn" class="primary-btn">TESTE DE PODER</button>
+      </div>
+    </section>
+
+    <section id="screen-result" class="screen" aria-label="Resultado do poder">
+      <header class="topbar">
+        <button class="icon-btn back-test" aria-label="Voltar">‹</button>
+        <div class="lc-seal mini" aria-hidden="true">LC</div>
+      </header>
+      <div class="parchment-card final-card">
+        <p class="eyebrow">SEU PODER É ÚNICO</p>
+        <h2 id="final-name" class="person-name final-name">Nome</h2>
+        <div class="ornament-line">✦</div>
+        <div id="power-orb" class="power-orb low" aria-label="Resultado do poder">
+          <div class="orb-shine"></div>
+          <span id="power-value">0%</span>
+        </div>
+        <div class="quote-card">“GRANDES PODERES<br>CONSTROEM<br>MUNDOS MAIS INCRÍVEIS.”</div>
+        <button id="restart-btn" class="secondary-btn">← &nbsp; VOLTAR À BUSCA</button>
+      </div>
+    </section>
+
+    <section id="screen-about" class="screen" aria-label="Sobre">
+      <header class="topbar">
+        <button class="icon-btn back-home" aria-label="Voltar">‹</button>
+        <div class="lc-seal mini" aria-hidden="true">LC</div>
+      </header>
+      <div class="parchment-card about-card">
+        <p class="eyebrow">MUNDO ENCANTADO</p>
+        <h2>PODERÔMETRO<br>LAS COLLABS</h2>
+        <div class="ornament-line">✦</div>
+        <p>Escolha seu nome, atravesse o portal e descubra o seu poder.</p>
+        <p class="tiny">Os resultados são definidos pela lista do Poderômetro.</p>
+        <button class="primary-btn back-home">BUSCAR MEU PODER</button>
+      </div>
+    </section>
+
+    <nav class="bottom-nav" aria-label="Navegação">
+      <button id="nav-search" class="nav-item active"><span>⌕</span><small>BUSCAR</small></button>
+      <button id="nav-about" class="nav-item"><span>ⓘ</span><small>SOBRE</small></button>
+    </nav>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
