@@ -20,3 +20,6 @@ A lista de nomes e percentuais está embutida em app.js. Se os arquivos forem pu
 
 ATUALIZAÇÃO DA LISTA:
 Quando a planilha final estiver pronta, basta substituir o bloco "people" em app.js; o restante do app não precisa ser alterado.
+
+
+V4: ajuste visual para manter a arte decorativa dentro do primeiro viewport e corrigir o título em telas estreitas.
