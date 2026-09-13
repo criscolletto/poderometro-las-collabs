@@ -22,4 +22,4 @@ ATUALIZAÇÃO DA LISTA:
 Quando a planilha final estiver pronta, basta substituir o bloco "people" em app.js; o restante do app não precisa ser alterado.
 
 
-V4: ajuste visual para manter a arte decorativa dentro do primeiro viewport e corrigir o título em telas estreitas.
+V5 ART: cenário mágico ocupa ~40% da tela; composição redesenhada para se aproximar dos mockups.

@@ -1,4 +1,4 @@
-const CACHE = 'poderometro-v4';
+const CACHE = 'poderometro-v5-art';
 const ASSETS = [
   './',
   './index.html',
