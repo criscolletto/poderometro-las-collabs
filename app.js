@@ -1,17 +1,17 @@
 const people = [
-  { name: "Cris Colletto", value: 0.82 },
-  { name: "Gabi Alario (Collabinha)", value: 0.26 },
-  { name: "Pat Spinelli", value: 0.86 },
-  { name: "Beta Whately", value: 0.59 },
-  { name: "Caroline Collier", value: 0.35 },
-  { name: "Juliana Zuccas", value: 0.48 },
-  { name: "Maheve Fadigas", value: 0.52 },
-  { name: "Patricia Moura", value: 0.87 },
-  { name: "Priscila Palacios", value: 0.96 },
-  { name: "Tatiana Parente", value: 0.56 },
-  { name: "Valeska Assumpção", value: 0.25 },
-  { name: "Carol Papa", value: 0.14 },
-  { name: "Fernanda Luchesi", value: 0.16 }
+  { name: "Cris Colletto", value: 0.82, potionValue: 1.00 },
+  { name: "Gabi Alario (Collabinha)", value: 0.26, potionValue: 0.51 },
+  { name: "Pat Spinelli", value: 0.86, potionValue: 0.90 },
+  { name: "Beta Whately", value: 0.59, potionValue: 0.66 },
+  { name: "Caroline Collier", value: 0.35, potionValue: 0.55 },
+  { name: "Juliana Zuccas", value: 0.48, potionValue: 0.68 },
+  { name: "Maheve Fadigas", value: 0.52, potionValue: 0.72 },
+  { name: "Patricia Moura", value: 0.87, potionValue: 1.00 },
+  { name: "Priscila Palacios", value: 0.96, potionValue: 1.00 },
+  { name: "Tatiana Parente", value: 0.56, potionValue: 0.89 },
+  { name: "Valeska Assumpção", value: 0.25, potionValue: 0.55 },
+  { name: "Carol Papa", value: 0.14, potionValue: 0.35 },
+  { name: "Fernanda Luchesi", value: 0.16, potionValue: 0.28 }
 ];
 
 let selectedPerson = null;
@@ -75,10 +75,12 @@ function openTest(person) {
   showScreen('screen-test');
 }
 
-function revealPower() {
+function revealPower(usePotion = false) {
   if (!selectedPerson) return;
-  const pct = Math.round(selectedPerson.value * 100);
+  const sourceValue = usePotion ? selectedPerson.potionValue : selectedPerson.value;
+  const pct = Math.round(sourceValue * 100);
   document.getElementById('final-name').textContent = selectedPerson.name;
+  document.getElementById('result-eyebrow').textContent = usePotion ? 'SEU PODER APÓS A POÇÃO' : 'SEU PODER É ÚNICO';
   document.getElementById('power-value').textContent = `${pct}%`;
   const orb = document.getElementById('power-orb');
   orb.classList.remove('high','mid','low','reveal-pulse');
@@ -109,7 +111,8 @@ clearSearch.addEventListener('click', () => { resultsSearch.value=''; renderResu
 document.querySelectorAll('.back-home').forEach(b => b.addEventListener('click', () => showScreen('screen-home')));
 document.querySelectorAll('.back-results').forEach(b => b.addEventListener('click', () => showScreen('screen-results')));
 document.querySelectorAll('.back-test').forEach(b => b.addEventListener('click', () => showScreen('screen-test')));
-document.getElementById('power-test-btn').addEventListener('click', revealPower);
+document.getElementById('power-test-btn').addEventListener('click', () => revealPower(false));
+document.getElementById('potion-test-btn').addEventListener('click', () => revealPower(true));
 document.getElementById('restart-btn').addEventListener('click', restart);
 navSearch.addEventListener('click', () => showScreen('screen-home'));
 navAbout.addEventListener('click', () => showScreen('screen-about'));
