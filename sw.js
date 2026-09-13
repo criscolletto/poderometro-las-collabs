@@ -1,15 +1,5 @@
-const CACHE = 'poderometro-v5-art';
-const ASSETS = [
-  './',
-  './index.html',
-  './styles.css',
-  './app.js',
-  './manifest.webmanifest',
-  './assets/icon-192.png',
-  './assets/icon-512.png',
-  './assets/mystic-table.png',
-  './assets/portal.png'
-];
+const CACHE = 'poderometro-v6-self-contained';
+const ASSETS = ['./','./index.html','./styles.css?v=6','./app.js?v=6','./manifest.webmanifest'];
 
 self.addEventListener('install', event => {
   self.skipWaiting();
@@ -18,13 +8,22 @@ self.addEventListener('install', event => {
 
 self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key))))
+    caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
 
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request).then(cached => cached || fetch(event.request))
-  );
+  const req = event.request;
+  if (req.mode === 'navigate' || req.destination === 'style' || req.destination === 'script') {
+    event.respondWith(
+      fetch(req).then(resp => {
+        const copy = resp.clone();
+        caches.open(CACHE).then(c => c.put(req, copy));
+        return resp;
+      }).catch(() => caches.match(req))
+    );
+    return;
+  }
+  event.respondWith(caches.match(req).then(cached => cached || fetch(req)));
 });

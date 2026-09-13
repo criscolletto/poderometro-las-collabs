@@ -23,3 +23,6 @@ Quando a planilha final estiver pronta, basta substituir o bloco "people" em app
 
 
 V5 ART: cenário mágico ocupa ~40% da tela; composição redesenhada para se aproximar dos mockups.
+
+
+V6 SELF-CONTAINED: mystic-table e portal estão embutidos no CSS; o visual não depende da pasta assets.
