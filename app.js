@@ -86,6 +86,12 @@ function openTest(person) {
   showScreen('screen-test');
 }
 
+function startPowerTest(usePotion = false) {
+  if (!selectedPerson) return;
+  showScreen('screen-thinking');
+  window.setTimeout(() => revealPower(usePotion), 3000);
+}
+
 function revealPower(usePotion = false) {
   if (!selectedPerson) return;
 
@@ -116,9 +122,9 @@ clearSearch.addEventListener('click', () => {
 });
 
 document.querySelectorAll('.go-home').forEach(button => button.addEventListener('click', goHome));
-document.getElementById('power-test-btn').addEventListener('click', () => revealPower(false));
-document.getElementById('potion-test-btn').addEventListener('click', () => revealPower(true));
-document.getElementById('result-potion-btn').addEventListener('click', () => revealPower(true));
+document.getElementById('power-test-btn').addEventListener('click', () => startPowerTest(false));
+document.getElementById('potion-test-btn').addEventListener('click', () => startPowerTest(true));
+document.getElementById('result-potion-btn').addEventListener('click', () => startPowerTest(true));
 document.getElementById('restart-btn').addEventListener('click', goHome);
 
 if ('serviceWorker' in navigator) {

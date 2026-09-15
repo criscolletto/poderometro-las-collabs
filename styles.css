@@ -265,3 +265,46 @@ h1{
   background-position:center !important;
   background-size:cover !important;
 }
+
+
+/* tela intermediária · medindo poder */
+.thinking-page{display:flex;align-items:center;justify-content:center;text-align:center}
+.thinking-content{position:relative;z-index:4;width:100%;padding:105px 18px 260px}
+.thinking-content .eyebrow{max-width:330px;margin:0 auto 8px;line-height:1.35}
+.thinking-title{margin:18px 0 24px;color:var(--wine);font-size:clamp(27px,8vw,38px);font-weight:500;letter-spacing:1px}
+.thinking-orb{width:180px;height:180px;margin:12px auto 26px;border-radius:50%;position:relative;display:grid;place-items:center;color:var(--gold-light);background:radial-gradient(circle at 38% 32%,#8a2634 0%,#5a0b18 42%,#2b070c 78%);border:3px solid var(--gold-2);box-shadow:0 0 0 3px rgba(77,38,13,.85),0 0 34px rgba(159,106,29,.55),inset 0 0 34px rgba(241,210,139,.18);animation:thinkingPulse 1.25s ease-in-out infinite}
+.thinking-moon{font-size:72px;transform:rotate(-12deg);text-shadow:0 0 16px rgba(241,210,139,.5)}
+.thinking-star{position:absolute;color:var(--gold-light);animation:thinkingTwinkle 1.05s ease-in-out infinite alternate}.ts1{top:24px;right:35px;font-size:23px}.ts2{bottom:31px;left:34px;font-size:18px;animation-delay:.3s}.ts3{top:71px;left:24px;font-size:15px;animation-delay:.6s}
+.thinking-copy{margin:0;color:#5b2018;font-size:14px;letter-spacing:2px}
+@keyframes thinkingPulse{0%,100%{transform:scale(.96);filter:brightness(.92)}50%{transform:scale(1.035);filter:brightness(1.15)}}
+@keyframes thinkingTwinkle{from{opacity:.25;transform:scale(.7) rotate(0deg)}to{opacity:1;transform:scale(1.25) rotate(20deg)}}
+
+/* V8 · moldura adaptada aos cantos arredondados do iPhone */
+@supports (padding: max(0px)) {
+  @media (max-width:480px) {
+    .parchment-page::before{
+      top:max(10px, calc(env(safe-area-inset-top) * .42));
+      left:max(8px, calc(env(safe-area-inset-left) + 8px));
+      right:max(8px, calc(env(safe-area-inset-right) + 8px));
+      bottom:max(8px, calc(env(safe-area-inset-bottom) * .28));
+      border-radius:clamp(24px, 7vw, 34px);
+    }
+  }
+}
+
+
+/* V9 · novo logo LC e mais respiro na tela de teste */
+.lc-seal{
+  font-size:0 !important;
+  background:transparent url('./assets/lc-logo.png') center/contain no-repeat !important;
+  border:0 !important;
+  box-shadow:none !important;
+  overflow:visible;
+}
+.lc-seal::after{display:none !important;}
+.test-content .person-name{margin-bottom:30px;}
+.test-content .portal-art{width:min(66%,250px);margin:0 auto 22px;}
+@media (max-width:390px){
+  .test-content .person-name{margin-bottom:26px;}
+  .test-content .portal-art{width:min(60%,220px);}
+}
