@@ -308,3 +308,49 @@ h1{
   .test-content .person-name{margin-bottom:26px;}
   .test-content .portal-art{width:min(60%,220px);}
 }
+
+/* ===== V10 · IDENTIDADE VISUAL REFINADA ===== */
+:root{--wine:#5a0d18;--wine-dark:#30070d;--gold:#9a6418;--gold-2:#bd8428;--gold-light:#efd08a;--ink:#4a1515;--paper:#ead09b;--paper-light:#f6e4bd}
+.parchment-page{background:
+ radial-gradient(circle at 15% 12%,rgba(111,65,18,.08) 0 1px,transparent 1.5px),
+ radial-gradient(circle at 83% 34%,rgba(111,65,18,.07) 0 1px,transparent 1.5px),
+ repeating-linear-gradient(98deg,rgba(83,43,12,.018) 0 1px,transparent 1px 7px),
+ radial-gradient(ellipse at 50% 42%,#f6e5bf 0%,#ecd19a 72%,#d9b16d 100%)}
+.parchment-page::before{border:1.5px solid #98651e;box-shadow:inset 0 0 0 1px rgba(246,216,151,.8),inset 0 0 20px rgba(88,45,11,.14)}
+.parchment-page::after{opacity:.35}
+.lc-seal{width:92px!important;height:92px!important;top:calc(16px + env(safe-area-inset-top))!important;background:transparent url('./assets/lc-logo.png') center/contain no-repeat!important;filter:drop-shadow(0 5px 7px rgba(62,25,8,.25));z-index:10}
+.inner-seal{width:78px!important;height:78px!important;top:calc(12px + env(safe-area-inset-top))!important}
+.home-page{padding-top:calc(124px + env(safe-area-inset-top))}
+.inner-page{padding-top:calc(104px + env(safe-area-inset-top))}
+.screen-title,.person-name,.thinking-title{color:var(--wine);font-weight:500}
+.ornament-line{color:var(--gold)}
+.search-box{border-color:rgba(147,96,27,.7);background:rgba(249,233,199,.68);box-shadow:inset 0 0 12px rgba(112,67,20,.06)}
+.magic-btn{border:1.5px solid #b67d26;background:linear-gradient(180deg,#6b1320 0%,#520b17 55%,#3b0710 100%);box-shadow:0 0 0 1px #5d2c0e,0 5px 12px rgba(47,15,4,.2),inset 0 1px rgba(255,255,255,.12);color:#f1d492}
+.result-row{border-color:rgba(156,103,31,.55)!important;background:rgba(249,232,194,.55)!important}
+
+/* tela do nome: mais respiro e arte menor */
+.test-content .person-name{margin-top:8px!important;margin-bottom:38px!important}
+.test-content .portal-art{width:min(58%,220px)!important;margin:0 auto 34px!important}
+.test-copy{margin-top:8px!important}
+
+/* telas intermediárias: orbe mais elegante */
+.thinking-content{padding-top:92px!important}
+.thinking-title{margin-top:22px!important;margin-bottom:34px!important}
+.thinking-orb{width:168px;height:168px;margin:18px auto 38px;border:2px solid #c18a31;box-shadow:0 0 0 2px rgba(87,43,12,.75),0 0 28px rgba(159,106,29,.38),inset 0 0 30px rgba(241,210,139,.16)}
+
+/* resultado: espaço claro acima e abaixo do círculo */
+.result-content .result-name{margin-bottom:30px!important}
+.result-content .power-orb{margin-top:30px!important;margin-bottom:38px!important}
+.result-content .quote-card{margin-top:0!important;margin-bottom:28px!important}
+.power-orb{border-width:2px!important;box-shadow:0 0 0 3px rgba(100,54,13,.75),0 8px 22px rgba(57,22,8,.20),inset 0 0 28px rgba(255,255,255,.10)!important}
+.quote-card{border:1px solid rgba(157,104,31,.75)!important;background:rgba(247,226,184,.48)!important;box-shadow:inset 0 0 14px rgba(119,72,24,.05)!important}
+
+@media(max-height:760px){
+ .lc-seal{width:72px!important;height:72px!important}
+ .inner-seal{width:66px!important;height:66px!important}
+ .inner-page{padding-top:calc(80px + env(safe-area-inset-top))}
+ .test-content .person-name{margin-bottom:24px!important}
+ .test-content .portal-art{width:min(48%,185px)!important;margin-bottom:22px!important}
+ .result-content .result-name{margin-bottom:20px!important}
+ .result-content .power-orb{margin-top:18px!important;margin-bottom:28px!important}
+}

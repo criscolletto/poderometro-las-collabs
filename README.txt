@@ -26,3 +26,5 @@ V5 ART: cenário mágico ocupa ~40% da tela; composição redesenhada para se ap
 
 
 V6 SELF-CONTAINED: mystic-table e portal estão embutidos no CSS; o visual não depende da pasta assets.
+
+V10 REFINED: identidade visual refinada conforme mockup aprovado; novo logo LC em todas as telas; portal menor e com mais respiro; maior espaçamento ao redor do círculo de resultado; cache atualizado.

@@ -1,5 +1,5 @@
-const CACHE = 'poderometro-v9-final';
-const ASSETS = ['./','./index.html','./styles.css?v=9','./app.js?v=9','./manifest.webmanifest','./assets/lc-logo.png'];
+const CACHE = 'poderometro-v10-refined';
+const ASSETS = ['./','./index.html','./styles.css?v=10','./app.js?v=10','./manifest.webmanifest','./assets/lc-logo.png'];
 
 self.addEventListener('install', event => {
   self.skipWaiting();
