@@ -20,3 +20,11 @@ A lista de nomes e percentuais está embutida em app.js. Se os arquivos forem pu
 
 ATUALIZAÇÃO DA LISTA:
 Quando a planilha final estiver pronta, basta substituir o bloco "people" em app.js; o restante do app não precisa ser alterado.
+
+
+V5 ART: cenário mágico ocupa ~40% da tela; composição redesenhada para se aproximar dos mockups.
+
+
+V6 SELF-CONTAINED: mystic-table e portal estão embutidos no CSS; o visual não depende da pasta assets.
+
+V10 REFINED: identidade visual refinada conforme mockup aprovado; novo logo LC em todas as telas; portal menor e com mais respiro; maior espaçamento ao redor do círculo de resultado; cache atualizado.
